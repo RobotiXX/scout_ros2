@@ -6,6 +6,8 @@
     <xacro:arg name="robot_namespace" default="/" /> 
 
     <xacro:include filename="$(find scout_description)/urdf/scout_mini/scout_mini_wheel.xacro" />
+    <!-- Sensors -->
+    <xacro:include filename="$(find scout_description)/urdf/sensors.xacro" />
 
     <!-- Variables -->
     <xacro:property name="M_PI" value="3.14159"/>
@@ -76,5 +78,9 @@
     <xacro:scout_mini_wheel wheel_prefix="rear_right">
         <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="3.14 0 0" />
     </xacro:scout_mini_wheel>
+
+    <xacro:sensor_macro parent_link="base_link">
+        <origin xyz="0.01 0 0.07" rpy="0 0 0"/>
+    </xacro:sensor_macro>
 
 </robot>
