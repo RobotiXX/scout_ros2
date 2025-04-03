@@ -13,12 +13,18 @@ def generate_launch_description():
     ds4_pkg = get_package_share_directory('ds4_driver')
     bev_pkg = get_package_share_directory('bev_cameras')
     scout_pkg = get_package_share_directory('scout_base')
+    scout_description_pkg = get_package_share_directory('scout_description')
 
     return LaunchDescription([
 
-        # Scout Base
+        # Scout Mini Base
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(scout_pkg, 'launch', 'scout_mini_base.launch.py')),
+        ),
+
+        # Scout Mini Base State Publisher
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(os.path.join(scout_description_pkg, 'launch', 'scout_mini_base_description.launch.py')),
         ),
 
         # ZED camera
