@@ -11,6 +11,9 @@
     <xacro:include filename="$(find scout_description)/urdf/scout_mini_wheel_3.xacro" />
     <xacro:include filename="$(find scout_description)/urdf/scout_mini_wheel_4.xacro" />
 
+    <!-- Sensors -->
+    <xacro:include filename="$(find scout_description)/urdf/sensors.xacro" />
+
     <!-- Variables -->
     <xacro:property name="M_PI" value="3.14159"/>
 
@@ -108,8 +111,13 @@
     </xacro:scout_mini_wheel_4>
 
     <!-- Additional definitions -->
-    <xacro:include filename="$(arg urdf_extras)" />
+    <!-- <xacro:include filename="$(arg urdf_extras)" /> -->
+
+    <!-- Add the sensor on top of base_link -->
+    <xacro:sensor_macro parent_link="base_link">
+        <origin xyz="0.01 0 0.07" rpy="0 0 0"/>
+    </xacro:sensor_macro>
 
     <!-- Gazebo definitions  -->
-    <xacro:include filename="$(find scout_description)/urdf/scout_mini.gazebo" />
+    <!-- <xacro:include filename="$(find scout_description)/urdf/scout_mini.gazebo" /> -->
 </robot>
