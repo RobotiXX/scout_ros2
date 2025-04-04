@@ -30,7 +30,7 @@ def generate_launch_description():
         # ZED camera
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(zed_pkg, 'launch', 'zed_camera.launch.py')),
-            launch_arguments={'camera_model': 'zed2'}.items(),
+            launch_arguments={'camera_model': 'zed2', 'camera_name': 'zed2'}.items(),
         ),
 
         # IMU (Witmotion)
