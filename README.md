@@ -4,7 +4,7 @@
 
 This repository contains minimal packages to control the scout robot using ROS. 
 
-* scout_base: a ROS wrapper around [ugv_sdk](https://github.com/westonrobot/ugv_sdk) to monitor and control the scout robot
+* scout_base: a ROS wrapper around [ugv_sdk](https://github.com/RobotiXX/ugv_sdk) to monitor and control the scout robot
 * scout_description: URDF model for the mobile base
 * scout_msgs: scout related message definitions
 
@@ -25,10 +25,10 @@ This repository contains minimal packages to control the scout robot using ROS.
     ```
     $ mkdir -p ~/ros2_ws/src
     $ cd ~/ros2_ws/src
-    $ git clone https://github.com/westonrobot/ugv_sdk.git
-    $ git clone https://github.com/westonrobot/scout_ros2.git
+    $ git clone https://github.com/RobotiXX/ugv_sdk.git
+    $ git clone https://github.com/RobotiXX/scout_ros2.git
     $ cd ..
-    $ colcon build
+    $ colcon build --symlink-install
     ```
 
 2. Launch ROS nodes
