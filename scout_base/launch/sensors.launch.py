@@ -48,9 +48,9 @@ def generate_launch_description():
             AnyLaunchDescriptionSource(os.path.join(ds4_pkg, 'launch', 'scout_controller.launch.xml')),
         ),
 
-        # # 360 Camera
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource(os.path.join(bev_pkg, 'launch', 'insta360_x4_launch.py')),
-        # ),
+        # 360 Camera
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(os.path.join(bev_pkg, 'launch', 'insta360_x4_launch.py')),
+        ),
 
     ])
