@@ -50,7 +50,12 @@ def generate_launch_description():
 
         # 360 Camera
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(bev_pkg, 'launch', 'insta360_x4_launch.py')),
+            PythonLaunchDescriptionSource(
+                os.path.join(bev_pkg, 'launch', 'cam360_launch.py')),
+            launch_arguments={
+                'insta360_x4': '0',
+                'format'      : '',
+            }.items(),
         ),
 
     ])
