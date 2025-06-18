@@ -11,7 +11,7 @@ def generate_launch_description():
     witmotion_pkg = get_package_share_directory('witmotion_ros')
     velodyne_pkg = get_package_share_directory('velodyne')
     ds4_pkg = get_package_share_directory('ds4_driver')
-    bev_pkg = get_package_share_directory('bev_cameras')
+    insta360_pkg = get_package_share_directory('insta360_camera_ros')
     scout_pkg = get_package_share_directory('scout_base')
     scout_description_pkg = get_package_share_directory('scout_description')
 
@@ -51,7 +51,7 @@ def generate_launch_description():
         # 360 Camera
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                os.path.join(bev_pkg, 'launch', 'cam360_launch.py')),
+                os.path.join(insta360_pkg, 'launch', 'insta360_x4.launch.py')),
             launch_arguments={
                 'insta360_x4': '0',
                 'format'      : '',
