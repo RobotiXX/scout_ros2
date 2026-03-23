@@ -38,6 +38,9 @@ void ScoutBaseRos::LoadParameters() {
   this->get_parameter<std::string>("base_frame", base_frame_);
   this->get_parameter<std::string>("odom_topic_name", odom_topic_name_);
 
+  this->declare_parameter("publish_odom_topic", true);
+  this->declare_parameter("publish_odom_tf", true)
+
   this->get_parameter<bool>("is_scout_mini", is_scout_mini_);
   this->get_parameter<bool>("is_omni_wheel", is_omni_wheel_);
   this->get_parameter<bool>("auto_reconnect", auto_reconnect_);
@@ -51,6 +54,11 @@ void ScoutBaseRos::LoadParameters() {
   RCLCPP_INFO_STREAM(this->get_logger(), "- base frame name: " << base_frame_);
   RCLCPP_INFO_STREAM(this->get_logger(),
                      "- odom topic name: " << odom_topic_name_);
+
+  RCLCPP_INFO_STREAM(this->get_logger(),
+                     "- publish odom topic: " << std::boolalpha << publish_odom_topic_);
+  RCLCPP_INFO_STREAM(this->get_logger(),
+                     "- publish odom tf: " << std::boolalpha << publish_odom_tf_);
 
   RCLCPP_INFO_STREAM(this->get_logger(),
                      "- is scout mini: " << std::boolalpha << is_scout_mini_);
@@ -180,6 +188,9 @@ void ScoutBaseRos::Run() {
     messenger->SetOdometryFrame(odom_frame_);
     messenger->SetBaseFrame(base_frame_);
     messenger->SetOdometryTopicName(odom_topic_name_);
+
+    messenger->SetPublishOdometryTopic(publish_odom_topic_);
+    messenger->SetPublishOdometryTf(publish_odom_tf_);
     if (simulated_robot_) messenger->SetSimulationMode(sim_control_rate_);
 
     // connect to robot and setup ROS subscription

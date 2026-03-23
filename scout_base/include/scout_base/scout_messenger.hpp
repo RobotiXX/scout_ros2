@@ -35,19 +35,24 @@ class ScoutMessenger {
   void SetOdometryFrame(std::string frame) { odom_frame_ = frame; }
   void SetBaseFrame(std::string frame) { base_frame_ = frame; }
   void SetOdometryTopicName(std::string name) { odom_topic_name_ = name; }
-
+  void SetPublishOdometryTopic(bool publish) { publish_odom_topic_ = publish; }
+  void SetPublishOdometryTf(bool publish) { publish_odom_tf_ = publish; }
   void SetSimulationMode(int loop_rate) {
     simulated_robot_ = true;
     sim_control_rate_ = loop_rate;
   }
+  bool publish_odom_topic_ = true;
+  bool publish_odom_tf_ = true;
 
   void SetupSubscription() {
     // odometry publisher
+    if (publish_odom_topic_) {
     odom_pub_ =
         node_->create_publisher<nav_msgs::msg::Odometry>(odom_topic_name_, 50);
+    }
     status_pub_ = node_->create_publisher<scout_msgs::msg::ScoutStatus>(
         "/scout_status", 10);
-
+    
     // cmd subscriber
     motion_cmd_sub_ = node_->create_subscription<geometry_msgs::msg::Twist>(
         "/cmd_vel", 5,
@@ -259,8 +264,11 @@ class ScoutMessenger {
     tf_msg.transform.translation.y = position_y_;
     tf_msg.transform.translation.z = 0.0;
     tf_msg.transform.rotation = odom_quat;
+    
+    if (publish_odom_tf_) {
+      tf_broadcaster_->sendTransform(tf_msg);
+    }
 
-    tf_broadcaster_->sendTransform(tf_msg);
 
     // publish odometry and tf messages
     nav_msgs::msg::Odometry odom_msg;
@@ -277,7 +285,9 @@ class ScoutMessenger {
     odom_msg.twist.twist.linear.y = lateral_speed;
     odom_msg.twist.twist.angular.z = angular_speed;
 
-    odom_pub_->publish(odom_msg);
+    if (publish_odom_topic_ && odom_pub_) {
+      odom_pub_->publish(odom_msg);
+    }
   }
 };
 }  // namespace westonrobot

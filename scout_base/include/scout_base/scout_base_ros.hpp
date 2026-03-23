@@ -32,6 +32,9 @@ class ScoutBaseRos : public rclcpp::Node {
   std::string base_frame_;
   std::string odom_topic_name_;
 
+  bool publish_odom_topic_ = true;
+  bool publish_odom_tf_ = true;
+
   bool is_scout_mini_ = false;
   bool is_omni_wheel_ = false;
   bool auto_reconnect_;
