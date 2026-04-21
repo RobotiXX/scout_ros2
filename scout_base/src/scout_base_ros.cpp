@@ -39,7 +39,7 @@ void ScoutBaseRos::LoadParameters() {
   this->get_parameter<std::string>("odom_topic_name", odom_topic_name_);
 
   this->declare_parameter("publish_odom_topic", true);
-  this->declare_parameter("publish_odom_tf", true)
+  this->declare_parameter("publish_odom_tf", true);
 
   this->get_parameter<bool>("is_scout_mini", is_scout_mini_);
   this->get_parameter<bool>("is_omni_wheel", is_omni_wheel_);
