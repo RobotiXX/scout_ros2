@@ -41,8 +41,8 @@ class ScoutMessenger {
     simulated_robot_ = true;
     sim_control_rate_ = loop_rate;
   }
-  bool publish_odom_topic_ = true;
-  bool publish_odom_tf_ = true;
+  bool publish_odom_topic_ = false;
+  bool publish_odom_tf_ = false;
 
   void SetupSubscription() {
     // odometry publisher

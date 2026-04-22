@@ -23,13 +23,13 @@ def generate_launch_description():
                                            description='Odometry topic name')
     publish_odom_topic_arg = DeclareLaunchArgument(
         'publish_odom_topic',
-        default_value='true',
+        default_value='false',
         description='Whether scout_base publishes nav_msgs/Odometry'
     )
 
     publish_odom_tf_arg = DeclareLaunchArgument(
         'publish_odom_tf',
-        default_value='true',
+        default_value='false',
         description='Whether scout_base publishes odom -> base TF'
     )
     is_scout_mini_arg = DeclareLaunchArgument('is_scout_mini', default_value='true',
